@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devsuperior.aula.dtos.PersonDTO;
 import com.devsuperior.aula.dtos.newPersonDepartmentDTO;
 import com.devsuperior.aula.services.PersonService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,13 @@ public class PersonController {
   @Autowired
   private PersonService service;
 
-  @PostMapping()
+  // @PostMapping()
   public ResponseEntity<newPersonDepartmentDTO> create(@RequestBody newPersonDepartmentDTO dto) {
+    return ResponseEntity.ok(service.insert(dto));
+  }
+
+  @PostMapping()
+  public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO dto) {
     return ResponseEntity.ok(service.insert(dto));
   }
 
